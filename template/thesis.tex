@@ -1,0 +1,93 @@
+\documentclass[11pt,oneside,openany,uplatex,dvipdfmx]{jsbook}
+\setcounter{tocdepth}{3}
+\usepackage[bookmarksdepth=subsection,dvipdfmx,setpagesize=false,bookmarksnumbered]{hyperref}
+\usepackage{pxjahyper}
+\usepackage[chapter]{algorithm}
+\usepackage{amsmath,amsthm, amssymb}
+\usepackage[dvipdfmx]{color}
+\usepackage{graphicx} 
+\usepackage{ascmac}
+\usepackage{lscape} 
+\usepackage{setspace}
+%\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{url}
+%\usepackage{tikz,tikz-uml}
+\usepackage{colortbl}
+\usepackage{pxrubrica}
+\usepackage{dcolumn} 
+\usepackage{enumitem}
+\usepackage{diagbox}
+\usepackage[maxfloats=256]{morefloats}
+\makeatletter
+\def\minimize{\mathop{\operator@font~minimize}}
+\def\maximize{\mathop{\operator@font~maximize}} 
+\def\T#1{#1^{\top}}
+\makeatother
+
+% 余白の設定．
+\usepackage[top=25truemm,bottom=15truemm,left=30truemm,right=15truemm]{geometry}
+\newcommand{\NA}{---}
+\newcommand{\Space}{\small{\backslashbox{　　}{　　　}}}
+\newcommand{\argmax}{\operatornamewithlimits{\mathrm{arg\,max}}}
+\newcommand{\argmin}{\operatornamewithlimits{\mathrm{arg\,min}}}
+\newcommand{\QED}{\hfill$\blacksquare$\par}
+\theoremstyle{definition} \newtheorem{theorem}{定理}
+\newtheorem*{theorem*}{定理} \newtheorem{Def}[theorem]{定義}
+\newtheorem*{Def*}{定義} \newtheorem{Alg}[theorem]{アルゴリズム}
+\newtheorem*{Alg*}{アルゴリズム} \newtheorem{Exp}{実験の流れ}
+\newtheorem*{Exp*}{実験の流れ} 
+
+\begin{document}
+
+\frontmatter
+\tableofcontents
+\listoffigures
+\listoftables
+
+% 本文
+\mainmatter
+\chapter{序論}
+\def\thepage{\arabic{page}}
+\setcounter{page}{1}\label{chap:Intro}
+\section{背景}
+\label{sec:Intro_Background}
+本論文では・・・．
+\section{目的}
+\label{sec:Intro_Purpose}
+目的は・・・．
+\section{構成}
+\label{sec:Intro_Contents}
+構成は・・・．
+\chapter{結論}
+\label{chap:Conculusion}
+結論は・・・．
+\begin{thebibliography}{99}
+  \bibitem{k-means}
+  MacQueen, J. B.: 
+  ``Some Methods for Classification and
+  Analysis of Multivariate Observations,''
+  Proc. 5th Berkeley Symposium on Mathematical Statistics and Probability,
+  pp.~281--297, (1967).
+\end{thebibliography}
+  \makeatletter 
+  \renewcommand{\bibname}{代表的な研究業績}
+  \renewcommand{\@biblabel}[1]{(#1)}
+  \makeatother
+  \begin{thebibliography}{99}
+  \bibitem{1}
+    Nanashi G and Yamada T.: ``Title ha Nai.''
+    ○○, Vol.~1, No.~1, pp.~100--102, (1999).
+  \end{thebibliography}
+  \backmatter
+  \chapter*{感想}
+  \addcontentsline{toc}{chapter}{感想}\label{chap:feel}
+  感想は・・・．
+   \chapter*{謝辞}
+   \addcontentsline{toc}{chapter}{謝辞}\label{chap:ack}
+   感謝します．
+   \chapter*{付録}
+   \addcontentsline{toc}{chapter}{付録}\label{chap:program}
+ \end{document}

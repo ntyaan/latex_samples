@@ -1,0 +1,10 @@
+#!/bin/sh
+name="thesis"
+uplatex $name
+if [ $? = 0 ]; then
+    uplatex $name
+    uplatex $name
+    dvipdfmx $name
+    rm -f $name.aux $name.log $name.dvi 
+fi
+pdftk title.pdf $name.pdf cat output 修士論文.pdf

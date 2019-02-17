@@ -1,0 +1,46 @@
+﻿\documentclass[a4paper]{ujarticle}
+\usepackage[top=20truemm,bottom=20truemm,left=30truemm,right=20truemm]{geometry}
+\makeatletter
+\def\@thesis{修　　士　　論　　文}
+\def\@myyear{20○○年度　　○○○○大学大学院}
+\def\department#1{\def\@department{#1}}
+\def\id#1{\def\@id{#1}}
+\def\furigana#1{\def\@furigana{#1}}
+\def\teacher#1{\def\@teacher{#1}}
+\def\@maketitle{
+  \null
+  \vspace{22mm}
+  \begin{center}
+    {\LARGE \@myyear\par}
+    \vspace{17mm}
+    {\Huge \@thesis\par} 
+    \vspace{22mm}
+    {\Large 題目：\LARGE \@title\par}
+    \vspace{38mm}
+    {\Large
+      {\renewcommand\arraystretch{1.5}
+        \begin{tabular}{ll}
+          専　　攻　& \@department\par\\ 
+          学籍番号　& \@id\par	 \\ 
+          ふりがな　& \@furigana\par  \\ 
+          氏　　名　& \@author\par    \\ 
+          指導教員　& \@teacher\par   
+        \end{tabular}
+      }
+    }
+  \end{center}
+}
+\makeatother
+\title{○○○○の応用}
+\department{理工学研究科（修士課程）○○○○○○○学専攻}
+\id{\bf ○○○○○○○}
+\furigana{ななしの　ごんべえ}
+\author{名無　権兵衛}
+\teacher{山田　太郎}
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage
+\addtocounter{page}{-1}
+\end{document}
