@@ -1,0 +1,123 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-uml}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+  \umlclass[x=6,y=3]{Vector}{
+    - Size : int\\
+    - Element : double* \\
+  }{}
+  \umlclass[x=6,y=-0.9]{Matrix}{
+    - Rows : int\\
+    - Element : Vector* \\
+  }{}
+  \umlclass[x=-6,y=3]{SparseVector}{
+    - Size : int\\
+    - EssencialSize : int\\
+    - Index : int* \\
+    - Element : double* \\
+  }{}
+  \umlclass[x=-6,y=-0.9]{SparseMatrix}{
+    - Rows : int\\
+    - Cols : int\\
+    - Element : SparseVector* \\
+  }{}
+  \umlclass{HCM}{
+    \#Data : SparseMatrix\\
+    \#Centers : Matrix\\
+    \#Membershp : Matrix}{
+    + revise\_dissimilarities()\\
+    + revise\_centers()\\
+    + revise\_membership()
+  }
+  \umlclass[y=-4]{HCMA}{
+    \#Clusters\_Size: Vector}{
+    + revise\_clusters\_size()
+  }
+  \umlclass[x=-2.3,y=-8.6]{KLFCM}{
+    \#FuzzifierLambda: double}{
+    + revise\_membership()\\
+    + revise\_clusters\_size()
+  }
+  \umlclass[x=2.4,y=-7.5]{BFCM}{
+    \#FuzzifierEm: double}{
+    + revise\_membership()\\
+    + revise\_centers()\\
+    + revise\_clusters\_size()
+  }
+  \umlclass[y=-12.5]{QFCM}{}{
+    + revise\_membership()\\
+    + revise\_centers()\\
+    + revise\_clusters\_size()
+  }
+  \umlclass[x=4.8, y=-4]{HCS}{}{
+    + revise\_dissimilarities()
+  }
+  \umlclass[x=4.8,y=-12.5]{KLFCS}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=7.4,y=-7.2]{BFCS}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=7.4,y=-16]{QFCS}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=-4.8, y=-4]{HCCM}{}{
+    + revise\_dissimilarities()
+  }
+  \umlclass[x=-8.4,y=-10]{KLFCCM}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=-8.5,y=-6.5]{BFCCM}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=-4.8,y=-12.2]{QFCCM}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=-7.5, y=-14.5]{HCCMM}{}{
+    + revise\_dissimilarities()
+  }
+  \umlclass[x=-3.7,y=-18]{KLFCCMM}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=-1.4,y=-15.5]{BFCCMM}{}{
+    + revise\_centers()
+  }
+  \umlclass[x=1,y=-18]{QFCCMM}{}{
+    + revise\_centers()
+  }
+  \umlimport{Matrix}{Vector}
+  \umlimport{SparseVector}{Vector}
+  \umlimport{SparseVector}{SparseMatrix}
+  \umlimport{HCM}{Matrix}
+  \umlimport{HCM}{SparseMatrix}
+  \umlinherit{HCMA}{HCM}
+  \umlinherit{KLFCM}{HCMA}
+  \umlinherit{BFCM}{HCMA}
+  \umlinherit{QFCM}{KLFCM}
+  \umlinherit{QFCM}{BFCM}
+  \umlinherit{HCS}{HCM}
+  \umlinherit{KLFCS}{HCS}
+  \umlinherit{KLFCS}{KLFCM}
+  \umlinherit{BFCS}{HCS}
+  \umlinherit{BFCS}{BFCM}
+  \umlinherit{QFCS}{HCS}
+  \umlinherit{QFCS}{QFCM}
+  \umlinherit{HCCM}{HCM}
+  \umlinherit{KLFCCM}{HCCM}
+  \umlinherit{KLFCCM}{KLFCM}
+  \umlinherit{BFCCM}{HCCM}
+  \umlinherit{BFCCM}{BFCM}
+  \umlinherit{QFCCM}{HCCM}
+  \umlinherit{QFCCM}{QFCM}
+  \umlinherit{HCCMM}{HCCM}
+  \umlinherit{KLFCCMM}{HCCMM}
+  \umlinherit{KLFCCMM}{KLFCM}
+  \umlinherit{BFCCMM}{HCCMM}
+  \umlinherit{BFCCMM}{BFCM}
+  \umlinherit{QFCCMM}{HCCMM}
+  \umlinherit{QFCCMM}{QFCM}
+\end{tikzpicture}
+\end{document}

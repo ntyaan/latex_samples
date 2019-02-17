@@ -1,0 +1,100 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\renewcommand{\familydefault}{\sfdefault}
+\tikzset{VECTOR/.style={color=red,thick,>=stealth}}
+\tikzset{VECTOR2/.style={color=black,thick,>=stealth}}
+\begin{document}
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, scale=0.10mm,
+    text width=10em, text badly centered, node distance=3.0cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, scale=0.20mm,
+    text width=10em, text centered,node distance=2.0cm, rounded corners,
+    minimum height=2em]
+  \tikzstyle{line} = [draw, -latex']
+  \tikzstyle{block2} = [rectangle, draw, fill=yellow!20, scale=0.20mm,
+    text width=5em, text centered,node distance=2.0cm, minimum height=2em]
+  \tikzstyle{line2} = [draw,VECTOR]
+  \tikzstyle{line3} = [draw,VECTOR2]
+  \tikzstyle{cloud} = [draw,text width=2.0cm, ellipse,fill=red!20,scale=0.2mm]
+  \tikzstyle{block3} = [draw,text width=10em, rectangle, rounded corners, 
+  text centered, fill=green!20,scale=0.20mm]
+ \begin{tikzpicture}[auto]
+  \node [cloud] (PropStart)  {\centering Start:\\Proposed method\centering\\};%1-1
+  \node [block, below of=PropStart,node distance=2.2cm] (PropStep1) 
+  {Step1:\\Rating values were chosen randomly and caused to be missing};%1-2
+  \node [block3, left of=PropStep1 ,node distance=4.1cm] (Sub1) 
+  {\textcolor{red}{five settings of \\missing values\centering}};%Sub1
+ \node [block, below of=PropStep1 ,node distance=2.2cm] (PropStep2)
+  {Step2:\\set number of clusters, initial cluter centers and parameters};%1-3
+  \node [block3, left of=PropStep2 ,  node distance=4.1cm] (Sub2) 
+  {\textcolor{red}{For ten initial settings, the clustering result 
+  with the minimal objective function value was selected}};%Sub2
+  \node [block, below of=PropStep2,node distance=2.0cm] (PropStep3) 
+  {Step3:\\calculate \\update formula};%1-4
+  \node [decision, below of=PropStep3,node distance=4.4cm] (PropStep4)
+  {\LARGE{Step4:\\convergence}};%1-5
+ \node [block, below of=PropStep4 ,node distance=2.5cm] (PropStep5) 
+       {Step5:\\calculate similarities \\between users and predict missing values };
+       \node [block3, left of=PropStep5 ,node distance=4.1cm] (Sub4) 
+             {\textcolor{red}{used users of the user-cluster including the active user\centering}};
+  %%%%
+  %\node [block2, left=1.1cm, below=0.73cm,node distance=1cm] 
+  %(Prop1) at (PropStep5) {Method1};
+  %\node [block2, right=1.1cm, below=0.73cm,node distance=1cm] 
+  %(Prop2) at (PropStep5) {Method2};
+  %%%%
+ \node [block, below of=PropStep5, node distance=2.0cm] (PropStep6) 
+  {Step6:\\ comparison by \\accuracy measure};%1-7
+ \node [block3, left of=PropStep6 ,node distance=4.1cm] (Sub3) 
+  {\textcolor{red}{\centering Accuracy measure:\\AUC}};
+ \node [cloud, below of=PropStep6, node distance=1.4cm] (PropStop) 
+  {End\centering\\};%1-8
+
+ \node [cloud, left of=PropStart,node distance=8.2cm] (ConvStart) at (PropStart)  
+  {\centering Start:\\Conventional method\centering\\};%2-1
+ \node [block, below of=ConvStart, node distance=2.2cm] (ConvStep1) 
+  {Step1:\\Rating values were chosen randomly and caused to be missing};%2-2
+ %\node [block, left of=PropStep3 ,node distance=8.2cm] (ConvStep2) 
+  %{Step2:\\calculate similarities \\between users};%2-3
+ \node [block, left of=PropStep5 ,node distance=8.2cm] (ConvStep2) 
+       {Step2:\\calculate similarities \\between users and predict missing values};%2-4
+  %%%%
+  %\node [block2, left=1.1cm, below=0.73cm,node distance=1.0cm] 
+  %(Conv1) at (ConvStep3) {Method1};
+  %\node [block2, right=1.1cm, below=0.73cm,node distance=1.0cm]
+  %(Conv2) at (ConvStep3) {Method2};
+  %%%%
+ \node [block, left of=PropStep6, node distance=8.2cm] (ConvStep3) 
+  {Step3:\\comparison by \\accuracy measure};%2-5
+  \node [cloud, below of=ConvStep3, node distance=1.4cm] (ConvStop)
+  {End\centering\\};%2-6
+
+ \path [line] (PropStart) -- (PropStep1);
+ \path [line] (PropStep1) -- (PropStep2);
+ \path [line2] (Sub1) -- (PropStep1);
+  \path [line2] (Sub1) -- (ConvStep1);
+ \path [line] (PropStep2) -- (PropStep3);
+ \path [line2] (Sub2) -- (PropStep2);
+ \path [line] (PropStep3) -- (PropStep4);
+ \path [line] (PropStep4) -- ++ (-2,0)|-node[near start]{no} (PropStep3);
+ \path [line] (PropStep4) --  node{yes}(PropStep5);
+ \path [line] (PropStep5) -- (PropStep6);
+ %\path [line3] (PropStep5) -- (Prop1);%1
+ %\path [line3] (PropStep5) -- (Prop2);%1
+ %\path [line] (Prop1) -- (PropStep6);
+ %\path [line] (Prop2) -- (PropStep6);
+ \path [line2] (Sub3) -- (PropStep6);
+ \path [line2] (Sub3) -- (ConvStep3);
+ \path [line] (PropStep6) -- (PropStop);
+ \path [line] (ConvStart) -- (ConvStep1);%はじめ
+ \path [line] (ConvStep1) -- (ConvStep2);%step1
+ %\path [line] (ConvStep2) -- (ConvStep3);%step2
+ \path [line] (ConvStep2) -- (ConvStep3);
+ %\path [line3] (ConvStep3) -- (Conv1);%1
+ %\path [line3] (ConvStep3) -- (Conv2);%1
+ %\path [line] (Conv1) -- (ConvStep4);
+ %\path [line] (Conv2) -- (ConvStep4);
+ \path [line] (ConvStep3) -- (ConvStop);%step4
+ \path [line2] (Sub4) -- (PropStep5);
+ \end{tikzpicture}
+\end{document}

@@ -1,0 +1,32 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-qtree,tikz-qtree-compat}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\tiny
+\begin{tikzpicture}[every node/.style={align=center},scale=.9]
+  \tikzset{
+    edge from parent/.style={
+      draw,edge from parent
+      path={(\tikzparentnode.south)-- +(0,-8pt)-| (\tikzchildnode)}
+    },
+    frontier/.style={distance from root=90pt}, 
+    level 1+/.style={level distance=18pt}
+  }
+
+  \Tree [.ニュース記事\,
+    [.\textcolor{red}{海外}\, 文書A\, 文書B\, ]
+    [.国内\, 
+    [.\textcolor{blue}{社会}\,
+    [.政治\, 文書C ]
+    [.経済\, 文書D 文書E ]
+      ]
+      [.\textcolor{green}{スポーツ}\,
+      [.サッカー\, 文書F ]
+      [.野球\, 文書G ]
+      ]  
+    ]
+  ]
+\end{tikzpicture}
+\end{document}

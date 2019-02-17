@@ -1,0 +1,40 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tikz}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+\tikzset{
+  treenode/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=blue!20},
+  root/.style     = {treenode, font=\Large, bottom color=red!30},
+  env/.style      = {treenode, font=\ttfamily\normalsize},
+}
+\begin{document}
+\tikzstyle{block} = [rectangle, draw, scale=0.15mm,
+  text width=20em, text centered,node distance=2.0cm,draw=white ,rounded corners, minimum height=2em]
+\begin{tikzpicture}
+  [
+    grow                    = right,
+    sibling distance        = 6em,
+    level distance          = 9em,
+    edge from parent/.style = {draw, -latex},
+    every node/.style       = {font=\footnotesize},
+    sloped
+  ]
+  \node [block] (p1) at (9.3,-2) {\Large \\\textcolor{red}{赤}:クラスタリング手法\\\textcolor{blue}{青}:応用　　　　　　　};
+  \node [root] {機械学習}
+  child { node [env] (a){教師あり学習\\\footnotesize{訓練データあり}}
+    child { node [env] (b){　回帰　}
+    }
+    child { node [env] (c){　分類　}
+      child { node [env] (d){
+          \footnotesize{・\textcolor{blue}{識別器　　　}}
+      }}
+  }}
+  child { node [env] (e){教師なし学習\\\footnotesize{訓練データなし}}
+    child { node [env] (f){\textcolor{black}{クラスタリング}}
+      child { node [env] (g){\footnotesize{・\textcolor{red}{階層的　　　}}\\\footnotesize{・\textcolor{red}{非階層的　　}}\\\footnotesize{・\textcolor{blue}{推薦システム}}\vspace{-1mm}
+      }}
+  }};
+\end{tikzpicture}
+\end{document}
